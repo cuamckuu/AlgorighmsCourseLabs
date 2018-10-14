@@ -59,6 +59,7 @@ void List::pop_front() {
 }
 
 void List::insert_before(size_t index, int val) {
+    // Insert new value to list, so that it  will be at `index`-th position
     size_t i = 0;
 
     Node *temp = head;
@@ -81,8 +82,10 @@ void List::insert_before(size_t index, int val) {
         newNode -> prev = temp -> prev;
         temp -> prev = newNode;
 
-    } else {
+    } else if (i == index) {
         head = tail = newNode;
+    } else {
+        // Wrong index
     }
 }
 
@@ -112,33 +115,27 @@ void List::remove(size_t index) {
     }
 
     if (temp != nullptr) {
-        // Remove head
         if (temp -> prev == nullptr && temp -> next != nullptr) {
+        // Remove head
             head = temp -> next;
             head -> prev = nullptr;
-            delete temp;
-        }
 
+            delete temp;
+        } else if (temp -> prev != nullptr && temp -> next == nullptr) {
         // Remove tail
-        if (temp -> prev != nullptr && temp -> next == nullptr) {
             tail = temp -> prev;
             tail -> next = nullptr;
             delete temp;
-        }
-
+        } else if (temp -> prev == nullptr && temp -> next == nullptr) {
         // Remove only one item
-        if (temp -> prev == nullptr && temp -> next == nullptr) {
             delete temp;
             head = tail = nullptr;
-        }
-
+        } else if (temp -> prev != nullptr && temp -> next != nullptr) {
         // Remove from middle
-        if (temp -> prev != nullptr && temp -> next != nullptr) {
             temp -> next -> prev = temp -> prev;
             temp -> prev -> next = temp -> next;
             delete temp;
         }
-
     }
 }
 

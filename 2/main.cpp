@@ -84,5 +84,6 @@ int main() {
     std::cout << "B contains A: ";
     std::cout << b.contains(a) << std::endl;
 
+    std::cin.get();
     return 0;
 }

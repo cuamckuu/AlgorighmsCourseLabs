@@ -54,6 +54,9 @@ void test_remove_head_mid_tail() {
 
     list.remove(1);
     assert(list.size() == 1);
+
+    list.remove(20);
+    assert(list.size() == 1);
 }
 
 void test_insert() {
@@ -61,6 +64,18 @@ void test_insert() {
     list.insert_before(0, 5);
     assert(list.size() == 1);
     assert(list.at(0) == 5);
+
+    list.insert_before(1, 6);
+    assert(list.size() == 2);
+    assert(list.at(1) == 8);
+
+    list.insert_before(1, 6);
+    assert(list.size() == 3);
+    assert(list.at(1) == 7);
+
+    list.insert_before(20, 5);
+    assert(list.size() == 1);
+    assert(list.at(20) == 0);
 }
 
 void test_at() {
@@ -73,6 +88,7 @@ void test_at() {
     assert(list.at(0) == 1);
     assert(list.at(1) == 2);
     assert(list.at(2) == 3);
+    assert(list.at(20) == 0);
 }
 
 void test_contains() {
