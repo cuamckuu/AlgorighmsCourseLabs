@@ -61,20 +61,21 @@ void test_remove_head_mid_tail() {
 
 void test_insert() {
     List list;
+
     list.insert_before(0, 5);
     assert(list.size() == 1);
     assert(list.at(0) == 5);
 
     list.insert_before(1, 6);
     assert(list.size() == 2);
-    assert(list.at(1) == 8);
+    assert(list.at(1) == 6);
 
-    list.insert_before(1, 6);
+    list.insert_before(1, 7);
     assert(list.size() == 3);
     assert(list.at(1) == 7);
 
-    list.insert_before(20, 5);
-    assert(list.size() == 1);
+    list.insert_before(20, 8);
+    assert(list.size() == 3);
     assert(list.at(20) == 0);
 }
 

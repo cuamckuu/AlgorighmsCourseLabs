@@ -92,9 +92,14 @@ void List::insert_before(size_t index, int val) {
         // NewNode is before Original Node
         temp -> prev = newNode;
 
-    } else if (i == index) {
+    } else if (head == nullptr) {
         // Head was null, so create it
         head = tail = newNode;
+    } else if (i == index) {
+        // Insert to end
+        tail -> next = newNode;
+        newNode -> prev = tail;
+
     } else {
         // Wrong index, free memory
         delete newNode;
