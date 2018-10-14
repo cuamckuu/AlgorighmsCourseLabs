@@ -62,30 +62,42 @@ void List::insert_before(size_t index, int val) {
     // Insert new value to list, so that it  will be at `index`-th position
     size_t i = 0;
 
+    // Trying to find Node with given index
     Node *temp = head;
     while (temp != nullptr && i != index) {
         temp = temp -> next;
         i++;
     }
 
+    // Create new node with given value
     Node *newNode = new Node;
     newNode -> value = val;
 
     if (temp != nullptr) {
+        // Index-th Node exist
         if (temp -> prev != nullptr) {
+            // It's not head, so make NewNode next for previous Node
             temp -> prev -> next = newNode;
         } else {
+            // Index was 0, so just change head
             head = newNode;
         }
 
+        // Original Node should follow NewNode
         newNode -> next = temp;
+
+        // NewNode should go after (Index-1)-th Node
         newNode -> prev = temp -> prev;
+
+        // NewNode is before Original Node
         temp -> prev = newNode;
 
     } else if (i == index) {
+        // Head was null, so create it
         head = tail = newNode;
     } else {
-        // Wrong index
+        // Wrong index, free memory
+        delete newNode;
     }
 }
 
