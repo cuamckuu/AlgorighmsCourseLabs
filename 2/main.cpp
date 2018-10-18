@@ -6,6 +6,7 @@ int main() {
     test_all();
 
     List list;
+
     std::cout << "Create empty list: \n";
     std::cout << "Is Empty: " << list.isEmpty() << std::endl;
     std::cout << std::endl;

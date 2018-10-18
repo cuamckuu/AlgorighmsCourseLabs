@@ -103,6 +103,7 @@ void List::insert_before(size_t index, int val) {
     } else {
         // Wrong index, free memory
         delete newNode;
+        throw(std::out_of_range("List::insert_before out of range"));
     }
 }
 
@@ -119,7 +120,7 @@ int List::at(size_t index) {
         return temp -> value;
     }
 
-    return 0;
+    throw(std::out_of_range("List::At out of range"));
 }
 
 void List::remove(size_t index) {
@@ -153,6 +154,8 @@ void List::remove(size_t index) {
             temp -> prev -> next = temp -> next;
             delete temp;
         }
+    } else {
+        throw(std::out_of_range("List::remove out of range"));
     }
 }
 
@@ -195,6 +198,8 @@ void List::set(size_t index, int val) {
 
     if (temp != nullptr) {
         temp -> value = val;
+    } else {
+        throw(std::out_of_range("List::set out of range"));
     }
 }
 
