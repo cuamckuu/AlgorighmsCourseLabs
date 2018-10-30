@@ -78,16 +78,6 @@ void test_insert() {
     assert(temp3.contains(3));
 }
 
-void test_pop_max() {
-    BinaryHeap temp3(arr3, 3);
-    temp3.insert(10);
-
-    assert(temp3.pop_max() == 10);
-    assert(temp3.pop_max() == 3);
-    assert(temp3.pop_max() == 2);
-    assert(temp3.pop_max() == 1);
-}
-
 void test_bfs_itterator() {
     BinaryHeap temp3(arr3, 3);
     temp3.insert(10);
@@ -147,7 +137,6 @@ void test_all() {
     test_increase_key();
     test_contains();
     test_insert();
-    test_pop_max();
     test_remove();
 
     test_bfs_itterator();

@@ -48,9 +48,6 @@ int main() {
     temp.remove(10);
     temp.display();
 
-    std::cout << "Pop max: \n";
-    std::cout << temp.pop_max() << "\n\n";
-
     std::cout << "Heapsort for initial array: \n";
     BinaryHeap::heapsort(arr, size);
     for (int i = 0; i < size; i++) {

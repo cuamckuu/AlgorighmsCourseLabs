@@ -38,8 +38,8 @@ void BinaryHeap::remove(int key) {
     bool found = false;
     for (i = 0; i < size; i++) {
         if (arr[i] == key) {
-            break;
             found = true;
+            break;
         }
     }
 
