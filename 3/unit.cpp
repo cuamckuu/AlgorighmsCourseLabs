@@ -130,6 +130,13 @@ void test_dfs_itterator() {
     assert(!itter->has_next());
 }
 
+void test_remove() {
+    BinaryHeap temp3(arr3, 3);
+    temp3.insert(10);
+    temp3.insert(11);
+
+}
+
 void test_all() {
     arr1[0] = arr2[0] = arr3[0] = 1;
     arr2[1] = arr3[1] = 2;
@@ -141,6 +148,7 @@ void test_all() {
     test_contains();
     test_insert();
     test_pop_max();
+    test_remove();
 
     test_bfs_itterator();
     test_dfs_itterator();

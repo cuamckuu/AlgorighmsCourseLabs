@@ -44,6 +44,10 @@ int main() {
     temp.insert(11);
     temp.display();
 
+    std::cout << "Remove 10 from heap: \n";
+    temp.remove(10);
+    temp.display();
+
     std::cout << "Pop max: \n";
     std::cout << temp.pop_max() << "\n\n";
 

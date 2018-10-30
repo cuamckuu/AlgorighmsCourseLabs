@@ -33,6 +33,25 @@ void BinaryHeap::heapify(size_t i) {
     }
 }
 
+void BinaryHeap::remove(int key) {
+    size_t i;
+    bool found = false;
+    for (i = 0; i < size; i++) {
+        if (arr[i] == key) {
+            break;
+            found = true;
+        }
+    }
+
+    if (!found) {
+        throw std::invalid_argument("No such key in heap");
+    }
+
+    std::swap(arr[i], arr[size-1]);
+    size--;
+    heapify(i);
+}
+
 BinaryHeap::BinaryHeap(int *init_arr, size_t init_size) {
     if (init_arr == nullptr || init_size == 0) {
         throw std::invalid_argument("Heap from nullptr");
@@ -100,20 +119,6 @@ void BinaryHeap::insert(int key) {
     increase_key(size-1, key);
 
     delete[] prev;
-}
-
-int BinaryHeap::pop_max() {
-    if (size == 0) {
-        throw std::out_of_range("Nothing to pop");
-    }
-
-    int max = arr[0];
-
-    arr[0] = arr[size-1];
-    size--;
-    heapify(0);
-
-    return max;
 }
 
 size_t BinaryHeap::get_size() {
