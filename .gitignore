@@ -2,4 +2,5 @@
 *.docx
 *.exe
 *.stackdump
+*.o
 tags
