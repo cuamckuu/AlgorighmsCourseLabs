@@ -4,7 +4,11 @@ HeapItteratorDFS::HeapItteratorDFS(BinaryHeap *heap, size_t start)
     :heap(heap)
     ,current(start)
 {
-    visited = new bool[heap->get_size()];
+    size_t size = (heap->get_size());
+    visited = new bool[size];
+    for (size_t i = 0; i < size; i++) {
+        visited[i] = 0;
+    }
 }
 
 HeapItteratorDFS::~HeapItteratorDFS() {
@@ -16,14 +20,13 @@ int HeapItteratorDFS::next() {
         throw std::out_of_range("Next element doesn't exist");
     }
 
+    size_t size = heap->get_size();
     int curr_key = heap->at(current);
     visited[current] = 1;
 
     while (visited[current] && has_next()) {
         size_t left  = current * 2 + 1;
         size_t right = current * 2 + 2;
-
-        size_t size = heap->get_size();
 
         if (left < size && !visited[left]) {
             current = left;

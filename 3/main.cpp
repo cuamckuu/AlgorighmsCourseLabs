@@ -20,13 +20,13 @@ int main() {
     temp.display();
 
     std::cout << "BFS Itterator: ";
-    Itterator *itter1 = temp.get_bfs_itter();
+    Itterator *itter1 = temp.get_bfs_itterator();
     while(itter1->has_next()) {
         std::cout << itter1->next() << " ";
     }
 
     std::cout << "\nDFS Itterator: ";
-    Itterator *itter2 = temp.get_dfs_itter();
+    Itterator *itter2 = temp.get_dfs_itterator();
     while(itter2->has_next()) {
         std::cout << itter2->next() << " ";
     }
@@ -43,9 +43,8 @@ int main() {
     std::cout << "Insert 11 to heap: \n";
     temp.insert(11);
     temp.display();
-    std::cout << "P.S.: Initial array and heap's array not the same anymore\n\n";
 
-    std::cout << "Pop max, should be fixed due to spec: \n";
+    std::cout << "Pop max: \n";
     std::cout << temp.pop_max() << "\n\n";
 
     std::cout << "Heapsort for initial array: \n";
@@ -54,6 +53,8 @@ int main() {
         std::cout << arr[i] << " ";
     }
     std::cout << "\n";
+
+    delete[] arr;
 
     return 0;
 }

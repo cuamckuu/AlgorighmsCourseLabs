@@ -12,6 +12,8 @@ class Itterator;
 class BinaryHeap {
 public:
     BinaryHeap(int *init_arr, size_t init_size);
+    ~BinaryHeap();
+
     void heapify(size_t i);
     static void heapsort(int *arr_to_sort, size_t sort_size);
     void increase_key(size_t i, int key);
@@ -22,8 +24,8 @@ public:
     int at(size_t i);
     bool contains(int key);
 
-    Itterator* get_dfs_itter();
-    Itterator* get_bfs_itter();
+    Itterator* get_dfs_itterator(size_t start = 0);
+    Itterator* get_bfs_itterator(size_t start = 0);
 
 private:
     int *arr;

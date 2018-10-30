@@ -9,6 +9,7 @@ public:
     virtual bool has_next() = 0;
 };
 
+// FIXME: Won't work if there was heap insertion
 class HeapItteratorDFS : public Itterator {
 public:
     HeapItteratorDFS(BinaryHeap* heap, size_t start);

@@ -6,7 +6,7 @@ bool is_power_of_2(int n) {
 }
 
 void BinaryHeap::display() {
-    // TODO: Use BFS itterator
+    // TODO: Use BFS itteratorator
     for (size_t i = 0; i < size; i++) {
         std::cout << arr[i] << " ";
     }
@@ -34,13 +34,25 @@ void BinaryHeap::heapify(size_t i) {
 }
 
 BinaryHeap::BinaryHeap(int *init_arr, size_t init_size) {
+    if (init_arr == nullptr || init_size == 0) {
+        throw std::invalid_argument("Heap from nullptr");
+    }
+
     size = init_size;
-    arr = init_arr;
+    arr = new int[init_size];
+
+    for (size_t i = 0; i < size; i++) {
+        arr[i] = init_arr[i];
+    }
 
     for (size_t i = (size - 1) / 2; i > 0; i--) {
         heapify(i);
     }
     heapify(0);
+}
+
+BinaryHeap::~BinaryHeap() {
+    delete[] arr;
 }
 
 void BinaryHeap::heapsort(int *arr_to_sort, size_t size) {
@@ -50,6 +62,10 @@ void BinaryHeap::heapsort(int *arr_to_sort, size_t size) {
         std::swap(heap.arr[0], heap.arr[i]);
         heap.size--;
         heap.heapify(0);
+    }
+
+    for (size_t i = 0; i < size; i++) {
+        arr_to_sort[i] = heap.arr[i];
     }
 }
 
@@ -69,7 +85,8 @@ void BinaryHeap::increase_key(size_t i, int key) {
 }
 
 void BinaryHeap::insert(int key) {
-    // User shoud handle own arrays allocations, so no memory cleanup for prev arr
+    // Itterator should be recreated after insertion, cause it's not valid anymore
+
     size++;
 
     int *prev = arr;
@@ -81,11 +98,11 @@ void BinaryHeap::insert(int key) {
 
     arr[size-1] = std::numeric_limits<int>::min();
     increase_key(size-1, key);
+
+    delete[] prev;
 }
 
 int BinaryHeap::pop_max() {
-    // Raw arrays aren't best choice for that kind of stuff
-
     if (size == 0) {
         throw std::out_of_range("Nothing to pop");
     }
@@ -111,21 +128,21 @@ int BinaryHeap::at(size_t i) {
     return arr[i];
 }
 
-Itterator* BinaryHeap::get_dfs_itter() {
-    return new HeapItteratorDFS(this, 0);
+Itterator* BinaryHeap::get_dfs_itterator(size_t start) {
+    return new HeapItteratorDFS(this, start);
 }
 
-Itterator* BinaryHeap::get_bfs_itter() {
-    return new HeapItteratorBFS(this, 0);
+Itterator* BinaryHeap::get_bfs_itterator(size_t start) {
+    return new HeapItteratorBFS(this, start);
 }
 
 bool BinaryHeap::contains(int key) {
     if (key > arr[0]) return false;
 
-    Itterator *itter = get_bfs_itter();
+    Itterator *itterator = get_bfs_itterator();
 
-    while (itter->has_next()) {
-        int curr = itter->next();
+    while (itterator->has_next()) {
+        int curr = itterator->next();
 
         if (curr == key) {
             return true;
