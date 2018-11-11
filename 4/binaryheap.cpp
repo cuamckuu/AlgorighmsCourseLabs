@@ -1,32 +1,8 @@
 #include "include/binaryheap.h"
 #include "include/itterator.h"
-#include <ncurses.h>
 
-void BinaryHeap::draw_node(size_t i, int x, int y, int r) {
-
-    size_t left = 2 * i + 1;
-    size_t right = 2 * i + 2;
-
-    if (left < size) {
-        draw_node(left, x-r, y+1, r/2);
-    }
-
-    if (right < size) {
-        draw_node(right, x+r, y+1, r/2);
-    }
-
-    mvprintw(y, x, "%d", arr[i]);
-}
-
-void BinaryHeap::display() {
-    initscr();
-
-    draw_node(0, 45, 0, 10);
-
-    refresh();
-    getch();
-    endwin();
-
+void BinaryHeap::display() const {
+    // TODO: Use BFS itteratorator
     for (size_t i = 0; i < size; i++) {
         std::cout << arr[i] << " ";
     }

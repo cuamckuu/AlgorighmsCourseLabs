@@ -59,7 +59,30 @@ void test_heapsort() {
 }
 
 void test_binsearch() {
+    int arr1[] = {-2, -1, 3, 4, 5, 6};
+    int *parr1 = &arr1[0];
+    size_t size = 6;
 
+    assert(is_sorted(parr1, size));
+
+    size_t res;
+    res = binsearch(arr1, 0, size, -2);
+    assert(res == 0);
+
+    res = binsearch(arr1, 0, size, -1);
+    assert(res == 1);
+
+    res = binsearch(arr1, 0, size, 3);
+    assert(res == 2);
+
+    res = binsearch(arr1, 0, size, 4);
+    assert(res == 3);
+
+    res = binsearch(arr1, 0, size, 5);
+    assert(res == 4);
+
+    res = binsearch(arr1, 0, size, 6);
+    assert(res == 5);
 }
 
 void test_quicksort() {

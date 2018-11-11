@@ -12,7 +12,7 @@ cls:
 	clear
 
 compile: $(OBJECTS)
-	$(CC) $(CFLAGS) $^ -o $(EXECUTABLE)
+	$(CC) $(CFLAGS) $^ -o $(EXECUTABLE) -lncurses
 
 run:
 	./$(EXECUTABLE)

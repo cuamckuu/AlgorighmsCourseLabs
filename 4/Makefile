@@ -3,7 +3,7 @@
 CC=g++
 CFLAGS=--std=c++11 -Wall
 EXECUTABLE=project
-SOURCES=main.cpp unit.cpp sortings.cpp
+SOURCES=main.cpp unit.cpp sortings.cpp binaryheap.cpp itterator.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 all: cls compile run clean

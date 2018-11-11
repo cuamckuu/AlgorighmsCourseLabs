@@ -9,8 +9,8 @@
 void bogosort(int *arr, size_t size);
 void bubblesort(int *arr, size_t size);
 void countsort(char *arr, size_t size);
-void heapsort(int *arr, size_t size);
-size_t binsearch(int *arr, size_t size, int key);
+size_t binsearch(int *arr, size_t l, size_t r, int key);
+size_t binsearch(char *arr, size_t l, size_t r, char key);
 void quicksort(int *arr, size_t size);
 void shuffle(int *arr, size_t size);
 

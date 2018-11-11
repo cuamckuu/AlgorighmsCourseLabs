@@ -40,11 +40,25 @@ void countsort(char *arr, size_t size) {
 	}
 }
 
-void heapsort(int *arr, size_t size) {
-	// В лабе 3
+size_t binsearch(int *arr, size_t l, size_t r, int key) {
+   if (r >= l) {
+        size_t mid = l + (r - l) / 2;
+
+        if (arr[mid] == key) {
+            return mid;
+		}
+
+        if (arr[mid] > key) {
+            return binsearch(arr, l, mid-1, key);
+		}
+
+        return binsearch(arr, mid+1, r, key);
+   }
+
+   return -1;
 }
 
-size_t binsearch(int *arr, size_t l, size_t r, int key) {
+size_t binsearch(char *arr, size_t l, size_t r, char key) {
    if (r >= l) {
         size_t mid = l + (r - l) / 2;
 

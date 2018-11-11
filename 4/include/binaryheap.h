@@ -16,7 +16,7 @@ public:
 
     void heapify(size_t i);
     void increase_key(size_t i, int key);
-    void display();
+    void display() const;
     size_t get_size() const;
     int at(size_t i) const;
 
@@ -24,8 +24,6 @@ public:
     bool contains(int key);
     void insert(int key);
     void remove(int key);
-
-    void draw_node(size_t i, int x, int y, int r);
 
     Itterator* get_dfs_itterator(size_t start = 0);
     Itterator* get_bfs_itterator(size_t start = 0);
