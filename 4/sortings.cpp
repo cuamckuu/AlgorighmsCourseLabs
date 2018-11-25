@@ -7,6 +7,23 @@ void shuffle(int *arr, size_t size) {
     }
 }
 
+int partition(int *arr, int low, int high) {
+	//Lomuto's partition
+
+    int pivot = arr[high];
+    int i = low;
+
+    for (int j = low; j < high; j++) {
+        if (arr[j] <= pivot) {
+			std::swap(arr[i], arr[j]);
+            i++;
+        }
+    }
+
+	std::swap(arr[i], arr[high]);
+    return i;
+}
+
 void bogosort(int *arr, size_t size) {
     while(!is_sorted(arr, size)) {
         shuffle(arr, size);
@@ -24,7 +41,7 @@ void bubblesort(int *arr, size_t size) {
 }
 
 void countsort(char *arr, size_t size) {
-    int arr_cnt[260] = {0}; // Some extra space to prevent error
+    int arr_cnt[260] = {0}; // Some extra space to prevent errors
 	int *counter = &arr_cnt[128];
 
 	for (size_t i = 0; i < size; i++) {
@@ -40,9 +57,12 @@ void countsort(char *arr, size_t size) {
 	}
 }
 
-size_t binsearch(int *arr, size_t l, size_t r, int key) {
+int binsearch(int *arr, int l, int r, int key) {
    if (r >= l) {
         size_t mid = l + (r - l) / 2;
+		std::cout << "Mid: " << mid << "\n";
+		std::cout << "L: " << l << "\n";
+		std::cout << "R: " << r << "\n";
 
         if (arr[mid] == key) {
             return mid;
@@ -58,24 +78,16 @@ size_t binsearch(int *arr, size_t l, size_t r, int key) {
    return -1;
 }
 
-size_t binsearch(char *arr, size_t l, size_t r, char key) {
-   if (r >= l) {
-        size_t mid = l + (r - l) / 2;
+void __quicksort(int *arr, int low, int high) {
+    if (low < high) {
+        int p = partition(arr, low, high);
 
-        if (arr[mid] == key) {
-            return mid;
-		}
-
-        if (arr[mid] > key) {
-            return binsearch(arr, l, mid-1, key);
-		}
-
-        return binsearch(arr, mid+1, r, key);
-   }
-
-   return -1;
+        quickSort(arr, low, p - 1);
+        quickSort(arr, p + 1, high);
+    }
 }
 
 void quicksort(int *arr, size_t size) {
-
+	shuffle(arr, size);
+	__quicksort(arr, 0, size-1);
 }
