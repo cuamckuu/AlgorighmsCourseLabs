@@ -18,6 +18,13 @@ void test_heap_from_array() {
     assert(("Heap from array size 3" ,temp3.at(0) == 3));
     assert(("Heap from array size 3" ,temp3.at(1) == 2));
     assert(("Heap from array size 3" ,temp3.at(2) == 1));
+
+    try {
+        BinaryHeap temp4(nullptr, 100);
+    } catch (std::exception e) {
+        return;
+    }
+    assert(false);
 }
 
 void test_heapsort() {
@@ -68,24 +75,36 @@ void test_insert() {
     assert(!temp3.contains(10));
 
     temp3.insert(10);
+    assert(temp3.at(0) == 10);
+    assert(temp3.at(1) == 3);
+    assert(temp3.at(2) == 1);
+    assert(temp3.at(3) == 2);
 
     assert(temp3.contains(10));
+    assert(temp3.contains(3));
     assert(temp3.contains(1));
     assert(temp3.contains(2));
-    assert(temp3.contains(3));
 }
 
 void test_remove() {
     BinaryHeap temp3(arr3, 3);
 
-    assert(!temp3.contains(10));
-    assert(!temp3.contains(11));
-
     temp3.insert(10);
-    temp3.insert(11);
+
+    assert(temp3.contains(1));
+    temp3.remove(1);
+    assert(!temp3.contains(1));
 
     assert(temp3.contains(10));
-    assert(temp3.contains(11));
+    temp3.remove(10);
+    assert(!temp3.contains(10));
+
+    try {
+        temp3.remove(2000);
+    } catch(std::exception e) {
+        return;
+    }
+    assert(false);
 }
 
 void test_bfs_itterator() {
@@ -108,6 +127,13 @@ void test_bfs_itterator() {
     assert(itter->next() == 2);
 
     assert(!itter->has_next());
+
+    try {
+        itter->next();
+    } catch(std::exception e) {
+        return;
+    }
+    assert(false);
 }
 
 void test_dfs_itterator() {
@@ -130,6 +156,13 @@ void test_dfs_itterator() {
     assert(itter->next() == 1);
 
     assert(!itter->has_next());
+
+    try {
+        itter->next();
+    } catch(std::exception e) {
+        return;
+    }
+    assert(false);
 }
 
 void test_all() {
