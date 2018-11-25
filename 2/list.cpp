@@ -99,7 +99,7 @@ void List::insert_before(size_t index, int val) {
         // Insert to end
         tail -> next = newNode;
         newNode -> prev = tail;
-
+        tail = newNode;
     } else {
         // Wrong index, free memory
         delete newNode;
