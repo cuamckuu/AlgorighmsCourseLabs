@@ -1,12 +1,13 @@
 #include "include/itterator.h"
 
-HeapItteratorDFS::HeapItteratorDFS(BinaryHeap *heap, size_t start)
+HeapItteratorDFS::HeapItteratorDFS(const BinaryHeap *heap, const size_t start)
     :heap(heap)
     ,current(start)
 {
-    size_t size = (heap->get_size());
-    visited = new bool[size];
-    for (size_t i = 0; i < size; i++) {
+    initial_size = heap->get_size();
+
+    visited = new bool[initial_size];
+    for (size_t i = 0; i < initial_size; i++) {
         visited[i] = 0;
     }
 }
@@ -41,20 +42,22 @@ int HeapItteratorDFS::next() {
     return curr_key;
 }
 
-bool HeapItteratorDFS::has_next() {
+bool HeapItteratorDFS::has_next() const {
     bool all_visited = true;
 
     for (size_t i = 0; i < (heap->get_size()); i++) {
         all_visited &= visited[i];
     }
 
-    return !all_visited;
+    return !all_visited && !(heap->wasChanged());
 }
 
-HeapItteratorBFS::HeapItteratorBFS(BinaryHeap *heap, size_t start)
+HeapItteratorBFS::HeapItteratorBFS(const BinaryHeap *heap, const size_t start)
     :heap(heap)
     ,current(start)
-{}
+{
+    initial_size = heap->get_size();
+}
 
 int HeapItteratorBFS::next() {
     if (!has_next()) {
@@ -65,7 +68,9 @@ int HeapItteratorBFS::next() {
     return heap->at(current-1);
 }
 
-bool HeapItteratorBFS::has_next() {
-    return current < (heap->get_size());
+bool HeapItteratorBFS::has_next() const {
+    size_t current_size = heap->get_size();
+
+    return (current < current_size) && !(heap->wasChanged());
 }
 

@@ -3,7 +3,7 @@
 CC=g++
 CFLAGS=--std=c++11 -Wall
 EXECUTABLE=project
-SOURCES=main.cpp unit.cpp binaryheap.cpp itterator.cpp
+SOURCES=main.cpp unit.cpp binaryheap.cpp itterator.cpp drawer.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 
 all: cls compile run clean
@@ -12,7 +12,7 @@ cls:
 	clear
 
 compile: $(OBJECTS)
-	$(CC) $(CFLAGS) $^ -o $(EXECUTABLE) -lncurses
+	$(CC) $(CFLAGS) $^ -o $(EXECUTABLE)
 
 run:
 	./$(EXECUTABLE)

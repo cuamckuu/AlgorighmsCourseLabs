@@ -8,16 +8,16 @@ int *arr3 = new int[3];
 
 void test_heap_from_array() {
     BinaryHeap temp1(arr1, 1);
-    assert(temp1.at(0) == 1);
+    assert(("Heap from array size 1", temp1.at(0) == 1));
 
     BinaryHeap temp2(arr2, 2);
-    assert(temp2.at(0) == 2);
-    assert(temp2.at(1) == 1);
+    assert(("Heap from array size 2" ,temp2.at(0) == 2));
+    assert(("Heap from array size 2" ,temp2.at(1) == 1));
 
     BinaryHeap temp3(arr3, 3);
-    assert(temp3.at(0) == 3);
-    assert(temp3.at(1) == 2);
-    assert(temp3.at(2) == 1);
+    assert(("Heap from array size 3" ,temp3.at(0) == 3));
+    assert(("Heap from array size 3" ,temp3.at(1) == 2));
+    assert(("Heap from array size 3" ,temp3.at(2) == 1));
 }
 
 void test_heapsort() {
@@ -29,22 +29,19 @@ void test_heapsort() {
 
     BinaryHeap::heapsort(arr4, 4);
 
-    assert(arr4[0] == 1);
-    assert(arr4[1] == 2);
-    assert(arr4[2] == 6);
-    assert(arr4[3] == 8);
+    assert(("Heapsort array size 4" ,arr4[0] == 1));
+    assert(("Heapsort array size 4" ,arr4[1] == 2));
+    assert(("Heapsort array size 4" ,arr4[2] == 6));
+    assert(("Heapsort array size 4" ,arr4[3] == 8));
 }
 
 void test_increase_key() {
     BinaryHeap temp3(arr3, 3);
-    assert(temp3.at(0) == 3);
-    assert(temp3.at(1) == 2);
-    assert(temp3.at(2) == 1);
 
     temp3.increase_key(2, 10);
-    assert(temp3.at(0) == 10);
-    assert(temp3.at(1) == 2);
-    assert(temp3.at(2) == 3);
+    assert(("Increase key test" ,temp3.at(0) == 10));
+    assert(("Increase key test" ,temp3.at(1) == 2));
+    assert(("Increase key test" ,temp3.at(2) == 3));
 }
 
 void test_contains() {
@@ -78,9 +75,23 @@ void test_insert() {
     assert(temp3.contains(3));
 }
 
+void test_remove() {
+    BinaryHeap temp3(arr3, 3);
+
+    assert(!temp3.contains(10));
+    assert(!temp3.contains(11));
+
+    temp3.insert(10);
+    temp3.insert(11);
+
+    assert(temp3.contains(10));
+    assert(temp3.contains(11));
+}
+
 void test_bfs_itterator() {
     BinaryHeap temp3(arr3, 3);
     temp3.insert(10);
+    temp3.resetChangesState();
 
     Itterator *itter = temp3.get_bfs_itterator();
 
@@ -102,6 +113,7 @@ void test_bfs_itterator() {
 void test_dfs_itterator() {
     BinaryHeap temp3(arr3, 3);
     temp3.insert(10);
+    temp3.resetChangesState();
 
     Itterator *itter = temp3.get_dfs_itterator();
 
@@ -118,13 +130,6 @@ void test_dfs_itterator() {
     assert(itter->next() == 1);
 
     assert(!itter->has_next());
-}
-
-void test_remove() {
-    BinaryHeap temp3(arr3, 3);
-    temp3.insert(10);
-    temp3.insert(11);
-
 }
 
 void test_all() {

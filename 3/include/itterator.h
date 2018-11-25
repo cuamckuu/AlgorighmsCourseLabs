@@ -6,30 +6,31 @@
 class Itterator {
 public:
     virtual int next() = 0;
-    virtual bool has_next() = 0;
+    virtual bool has_next() const = 0;
 };
 
-// FIXME: Won't work if there was heap insertion
 class HeapItteratorDFS : public Itterator {
 public:
-    HeapItteratorDFS(BinaryHeap* heap, size_t start);
+    HeapItteratorDFS(const BinaryHeap* heap, const size_t start);
     ~HeapItteratorDFS();
     int next() override;
-    bool has_next() override;
+    bool has_next() const override;
 
-    BinaryHeap *heap;
+    const BinaryHeap *heap;
     bool* visited;
     size_t current;
+    size_t initial_size;
 };
 
 class HeapItteratorBFS : public Itterator {
 public:
-    HeapItteratorBFS(BinaryHeap* heap, size_t start);
+    HeapItteratorBFS(const BinaryHeap* heap, const size_t start);
     int next() override;
-    bool has_next() override;
+    bool has_next() const override;
 
-    BinaryHeap *heap;
+    const BinaryHeap *heap;
     size_t current;
+    size_t initial_size;
 };
 
 #endif

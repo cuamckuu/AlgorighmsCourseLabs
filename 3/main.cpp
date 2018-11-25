@@ -16,9 +16,9 @@ int main() {
     std::cout << "\n\n";
 
     BinaryHeap temp(arr, size);
-    std::cout << "Heap Display:  ";
+    std::cout << "Heap Display:  \n";
     temp.display();
-/*
+
     std::cout << "BFS Itterator: ";
     Itterator *itter1 = temp.get_bfs_itterator();
     while(itter1->has_next()) {
@@ -54,7 +54,7 @@ int main() {
         std::cout << arr[i] << " ";
     }
     std::cout << "\n";
-*/
+
     delete[] arr;
 
     return 0;
