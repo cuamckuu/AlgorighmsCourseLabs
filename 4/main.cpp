@@ -1,28 +1,46 @@
 #include <iostream>
 #include <cstdio>
+#include <ctime>
+#include <fstream>
+
+//Александр Красильников
 #include "include/unit.h"
 #include "include/sortings.h"
 #include "include/binaryheap.h"
 
 int main() {
-    //test_all();
+    test_all();
 
-    //srand(time(0));
     size_t size = 10;
-    int *arr = nullptr;
+    std::ofstream fout("data/" + std::to_string(size) + ".txt");
 
-    std::cout << "Random array generated: \n";
-    get_random_array(arr, size, 256);
-    display(arr, size);
+    for (int i = 0; i < 1; i++) {
+        srand(time(0));
 
-	quicksort(arr, size);
+        int *arr1 = nullptr;
+        get_random_array(arr1, size, 256);
 
-    std::cout << "\nSorted: \n";
-    display(arr, size);
-    std::cout << "\n";
+        int *arr2 = new int[size];
+        for (size_t i = 0; i < size; i++) {
+            arr2[i] = arr1[i];
+        }
 
-	int res = binsearch(arr, 0, size, -175);
-    std::cout << "Search for -92 via binsearch: " << (int)res << "\n\n";
+        clock_t begin = clock();
+        quicksort(arr1, size);
+        clock_t end = clock();
 
+        fout << std::fixed;
+        double q_time = double(end-begin) / CLOCKS_PER_SEC;
+        fout << "Quicksort time: " << q_time << "\n";
+
+        begin = clock();
+        bubblesort(arr2, size);
+        end = clock();
+
+        double b_time = double(end-begin) / CLOCKS_PER_SEC;
+        fout << "Bubblesort time: " << b_time << "\n";
+
+        //std::cout << "QSort is faster in " << b_time / q_time << " times\n";
+    }
     return 0;
 }

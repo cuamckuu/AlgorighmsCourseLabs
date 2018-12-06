@@ -1,0 +1,2 @@
+Quicksort time: 0.526225
+Bubblesort time: 102.083815

@@ -1,5 +1,6 @@
 #include "include/unit.h"
 #include "include/sortings.h"
+#include "include/binaryheap.h"
 
 void test_is_sorted() {
     int arr1[] = {1, 2, 3, 4, 5, 6};
@@ -47,15 +48,14 @@ void test_heapsort() {
     int *parr1 = &arr1[0];
 
     assert(!is_sorted(parr1, 6));
-    //BinaryHeap::heapsort(parr1, 6);
-    //assert(is_sorted(parr1, 6));
+    BinaryHeap::heapsort(parr1, 6);
+    assert(is_sorted(parr1, 6));
 
     int arr2[] = {5};
     int *parr2 = &arr1[0];
 
-    //BinaryHeap::heapsort(parr2, 1);
-    //assert(is_sorted(parr2, 1));
-
+    BinaryHeap::heapsort(parr2, 1);
+    assert(is_sorted(parr2, 1));
 }
 
 void test_binsearch() {
@@ -65,7 +65,7 @@ void test_binsearch() {
 
     assert(is_sorted(parr1, size));
 
-    size_t res;
+    int res;
     res = binsearch(arr1, 0, size, -2);
     assert(res == 0);
 
@@ -83,6 +83,9 @@ void test_binsearch() {
 
     res = binsearch(arr1, 0, size, 6);
     assert(res == 5);
+
+    res = binsearch(arr1, 0, size, -123);
+    assert(res == -1);
 }
 
 void test_quicksort() {
@@ -90,14 +93,14 @@ void test_quicksort() {
     int *parr1 = &arr1[0];
 
     assert(!is_sorted(parr1, 6));
-    //quicksort(parr1, 6);
-    //assert(is_sorted(parr1, 6));
+    quicksort(parr1, 6);
+    assert(is_sorted(parr1, 6));
 
     int arr2[] = {5};
     int *parr2 = &arr1[0];
 
-    //quicksort(parr2, 1);
-    //assert(is_sorted(parr2, 1));
+    quicksort(parr2, 1);
+    assert(is_sorted(parr2, 1));
 }
 
 void test_countsort() {

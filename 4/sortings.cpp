@@ -60,9 +60,6 @@ void countsort(char *arr, size_t size) {
 int binsearch(int *arr, int l, int r, int key) {
    if (r >= l) {
         size_t mid = l + (r - l) / 2;
-		std::cout << "Mid: " << mid << "\n";
-		std::cout << "L: " << l << "\n";
-		std::cout << "R: " << r << "\n";
 
         if (arr[mid] == key) {
             return mid;
@@ -82,8 +79,8 @@ void __quicksort(int *arr, int low, int high) {
     if (low < high) {
         int p = partition(arr, low, high);
 
-        quickSort(arr, low, p - 1);
-        quickSort(arr, p + 1, high);
+        __quicksort(arr, low, p - 1);
+        __quicksort(arr, p + 1, high);
     }
 }
 
